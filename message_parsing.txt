@@ -62,5 +62,5 @@ puts "sending app : #{msg[:MSH].message_profile_identifier}"
 parser = Hl7Parser.new
 parser.file("message1.txt")
 parser.process_file
-parser_file("message2.txt")
+parser.file("message2.txt")
 parser.process_file
