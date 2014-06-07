@@ -1,0 +1,58 @@
+reference: http://rubydoc.info/gems/ruby-hl7/1.0.3/HL7/Message
+
+Creating a new HL7 message
+
+# create a message
+msg = HL7::Message.new
+
+# create a MSH segment for our new message
+msh = HL7::Message::Segment::MSH.new
+msh.recv_app = "ruby hl7"
+msh.recv_facility = "my office"
+msh.processing_id = rand(10000).to_s
+
+msg << msh # add the MSH segment to the message
+
+puts msg.to_s # readable version of the message
+
+puts msg.to_hl7 # hl7 version of the message (as a string)
+
+puts msg.to_mllp # mllp version of the message (as a string)
+Parse an existing HL7 message
+
+
+read an example file
+
+raw_input = open( "message1.txt" ).readlines
+msg = HL7::Message.new( raw_input )
+
+puts "message type: %s" % msg[:MSH].message_type
+
+
+raw_input = open( "message2.txt" ).readlines
+msg = HL7::Message.new( raw_input )
+
+puts "message type: %s" % msg[:MSH].message_type
+
+
+
+puts "sending app : #{msg[:MSH].sending_app}"
+puts "sending app : #{msg[:MSH].sending_facility}"
+puts "sending app : #{msg[:MSH].recv_app}"
+puts "sending app : #{msg[:MSH].recv_facility}"
+puts "sending app : #{msg[:MSH].time}"
+
+puts "sending app : #{msg[:MSH].security}"
+puts "sending app : #{msg[:MSH].message_type}"
+puts "sending app : #{msg[:MSH].message_control_id}"
+puts "sending app : #{msg[:MSH].processing_id}"
+puts "sending app : #{msg[:MSH].version_id}"
+puts "sending app : #{msg[:MSH].seq}"
+puts "sending app : #{msg[:MSH].continue_ptr}"
+puts "sending app : #{msg[:MSH].accept_ack_type}"
+puts "sending app : #{msg[:MSH].app_ack_type}"
+puts "sending app : #{msg[:MSH].country_code}"
+puts "sending app : #{msg[:MSH].charset}"
+puts "sending app : #{msg[:MSH].principal_language_of_message}"
+puts "sending app : #{msg[:MSH].alternate_character_set_handling_scheme}"
+puts "sending app : #{msg[:MSH].message_profile_identifier}"
