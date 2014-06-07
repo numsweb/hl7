@@ -56,3 +56,11 @@ puts "sending app : #{msg[:MSH].charset}"
 puts "sending app : #{msg[:MSH].principal_language_of_message}"
 puts "sending app : #{msg[:MSH].alternate_character_set_handling_scheme}"
 puts "sending app : #{msg[:MSH].message_profile_identifier}"
+
+
+
+parser = Hl7Parser.new
+parser.file("message1.txt")
+parser.process_file
+parser_file("message2.txt")
+parser.process_file
